@@ -26,13 +26,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+I learned that I can use Express to create routes and handle routes in my application. I learned about the request and response objects provided by express as helpers to handle requests to the web server and issues responses to a client.
+
 - [ ] Describe Middleware?
+
+Middleware is any function that uses the request and response objects either returning a response or using a callback function (called next by convention) to continue on to the next function. One common example of a middleware function is a logger that logs every request made to the server before passing the request to the next operation in the stack of functions.
 
 - [ ] Describe a Resource?
 
+A resource should be accessible through a unique URI and it is managed through the four CRUD operations. Everything in a RESTful web API is a resource whether it is a list of users `/users` or `/posts` .
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+An API can return the appropriate HTTP response status code to the client which signifies that the request was successful. For example, a successful POST request typically returns a status code of 201 to the client.
+
 - [ ] How can we partition our application into sub-applications?
+
+We can use routes within our express application to break apart our application into smaller, sub-applications. For example, we could create a separate file that handles all of the routes that handle the `/users` resource.
 
 ## Project Setup
 
