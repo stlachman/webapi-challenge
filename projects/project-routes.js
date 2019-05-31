@@ -30,6 +30,18 @@ router.get("/:id", validateProjectId, (req, res) => {
   res.status(200).json(req.project);
 });
 
+// PUT - UPDATE single project
+router.put("/:id", validateProjectId, validateProject, (req, res) => {
+  const updatedProject = req.body;
+  Projects.update(req.project.id, updatedProject)
+    .then(project => {
+      res.status(201).json(project);
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Error updating project" });
+    });
+});
+
 function validateProjectId(req, res, next) {
   const projectId = req.params.id;
   Projects.get(projectId)
