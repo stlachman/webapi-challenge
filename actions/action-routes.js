@@ -26,16 +26,27 @@ router.get("/", (req, res) => {
     });
 });
 
-// GET - READ single project
+// GET - READ single action
 router.get("/:id", validateActionId, (req, res) => {
   res.status(200).json(req.action);
+});
+
+// PUT - Update single action
+router.put("/:id", validateActionId, validateAction, (req, res) => {
+  const updatedAction = req.body;
+  Actions.update(req.action.id, updatedAction)
+    .then(action => {
+      res.status(201).json(action);
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Error updating action" });
+    });
 });
 
 function validateActionId(req, res, next) {
   const actionId = req.params.id;
   Actions.get(actionId)
     .then(action => {
-      console.log(action);
       if (action) {
         req.action = action;
         next();
