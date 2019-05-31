@@ -31,7 +31,7 @@ router.get("/:id", validateActionId, (req, res) => {
   res.status(200).json(req.action);
 });
 
-// PUT - Update single action
+// PUT - UPDATE single action
 router.put("/:id", validateActionId, validateAction, (req, res) => {
   const updatedAction = req.body;
   Actions.update(req.action.id, updatedAction)
@@ -41,6 +41,14 @@ router.put("/:id", validateActionId, validateAction, (req, res) => {
     .catch(err => {
       res.status(500).json({ message: "Error updating action" });
     });
+});
+
+// DELETE - DELETE a single action
+
+router.delete("/:id", validateActionId, (req, res) => {
+  Actions.remove(req.action.id)
+    .then(action => res.status(200).json(action))
+    .catch(err => res.status(500).json({ message: "Error removing action" }));
 });
 
 function validateActionId(req, res, next) {
