@@ -55,7 +55,6 @@ function validateActionId(req, res, next) {
   const actionId = req.params.id;
   Actions.get(actionId)
     .then(action => {
-      console.log(action);
       if (action) {
         req.action = action;
         next();
