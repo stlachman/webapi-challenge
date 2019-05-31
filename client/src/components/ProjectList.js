@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class ProjectList extends React.Component {
   constructor() {
@@ -38,6 +39,7 @@ class ProjectList extends React.Component {
             return (
               <div key={project.id}>
                 <p>{project.name}</p>
+                <Link to={`/projects/${project.id}`}>View Project</Link>
               </div>
             );
           })}
