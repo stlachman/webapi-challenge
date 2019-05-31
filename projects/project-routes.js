@@ -45,6 +45,17 @@ router.get("/:id", validateProjectId, (req, res) => {
   res.status(200).json(req.project);
 });
 
+// GET - READ all actions for a single project
+router.get("/:id/actions", validateProjectId, (req, res) => {
+  Projects.getProjectActions(req.project.id)
+    .then(actions => {
+      res.status(200).json(actions);
+    })
+    .catch(err =>
+      res.status(500).json({ message: "Error retrieving list of actions" })
+    );
+});
+
 // PUT - UPDATE single project
 router.put("/:id", validateProjectId, validateProject, (req, res) => {
   const updatedProject = req.body;
